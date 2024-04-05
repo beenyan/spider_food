@@ -4,7 +4,7 @@ mod utils;
 
 use crate::utils::args::Args;
 use anyhow::Result;
-use futures::future::join;
+use futures::future::try_join;
 
 #[tokio::main]
 async fn main() -> Result<()> {
@@ -13,13 +13,11 @@ async fn main() -> Result<()> {
     println!("Batch Size: {:#?}", batch_size);
     println!("Fetch Start...");
 
-    let (go_foodie, iding) = join(
+    try_join(
         company::go_foodie::fetch_all(batch_size),
         company::iding::fetch_all(batch_size),
     )
-    .await;
-    go_foodie?;
-    iding?;
+    .await?;
 
     println!("All Question Finish...");
 
