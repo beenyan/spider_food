@@ -1,0 +1,23 @@
+[package]
+name = "spider_food"
+version = "0.1.0"
+edition = "2021"
+authors = ["BeenYan <asdfghjkl42045@gmail.com>"]
+description = "餐廳爬蟲"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+reqwest = { version = "0.12", features = ["json"] }
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1.0.197", features = ["derive"] }
+anyhow = "1.0.80"
+scraper = "0.19.0"
+serde_json = "1.0.114"
+futures = "0.3.30"
+regex = "1.10.4"
+lazy_static = "1.4.0"
+
+[profile.release]
+panic = "abort"
